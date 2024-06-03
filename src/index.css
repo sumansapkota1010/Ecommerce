@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .container {
+    @apply px-3  w-full sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1170px] ml-auto mr-auto;
+  }
+
+  .track {
+    @apply border-red-500 border-2;
+  }
+
+  .form-label {
+    @apply block mb-2 text-sm font-medium text-gray-900;
+  }
+  .form-control {
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700;
+  }
+
+  .required-field {
+    @apply after:content-['_*'] after:text-red-500;
+  }
+}
+
+.product:hover {
+  background-color: orange;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.to-top {
+}
+
+/* .required-field::after {
+  content: " *";
+  display: "inline-block";
+  color: red;
+} */
+
+/* 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  padding: 1rem;
+  background-color: #7e33e0;
+  color: white;
+} 
+*/
+
+/* 
+.container {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media(min-width:640px){
+  .container{
+    max-width:540px ;
+  }
+}
+@media(min-width:768px){
+  .container{
+    max-width:720px ;
+  }
+}
+ */
