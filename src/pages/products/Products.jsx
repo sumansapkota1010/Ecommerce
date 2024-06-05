@@ -1,9 +1,21 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect } from 'react'
 
-const Products = () => {
+const Product = () => {
+
+
+
+
+
+
+
     return (
-        <div>Products</div>
+        <>
+
+            <div>Products</div>
+
+        </>
     )
 }
 
-export default Products
+export default Product

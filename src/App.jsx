@@ -15,6 +15,7 @@ import Products from "./pages/products/Products";
 import ProductDetail from "./pages/products/ProductDetail";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Carts from "./pages/products/Carts";
 
 
 
@@ -27,6 +28,10 @@ function App() {
         {
           path: "",
           element: <Home />
+        },
+        {
+          path: "carts",
+          element: <Carts />
         },
         {
           path: "login",

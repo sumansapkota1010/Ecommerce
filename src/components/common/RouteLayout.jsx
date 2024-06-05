@@ -7,6 +7,7 @@ const RouteLayout = () => {
         <>
 
             <Header />
+            
             < Outlet />
 
         </>

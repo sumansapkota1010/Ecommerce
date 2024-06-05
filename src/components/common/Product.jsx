@@ -1,5 +1,7 @@
 import React from 'react'
+import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
+
 
 const Product = ({ product }) => {
 
@@ -12,10 +14,10 @@ const Product = ({ product }) => {
 
             {
 
-                <Link to={`/products/${product._id}`} className='text-center group shadow hover:shadow-xl transition-all'>
-                    <span>cart icon </span>
-                    <div className='bg-primary-light'>
-                        <img className='mx-auto h-[150] w-full object-contain' src={product.image} alt="" />
+                <Link to={`/products/${product._id}`} className='text-center group shadow hover:shadow-xl transition-all relative'>
+
+                    <div className='bg-primary-light '>
+                        <img className='mx-auto   w-full aspect-square object-cover' src={product.image} alt="" />
                     </div>
 
                     <div className='p-4  group-hover:bg-primary'>
@@ -27,6 +29,10 @@ const Product = ({ product }) => {
 
                             <p>{product.price}</p>
                         </div>
+                        <span className=' hidden absolute top-0 left-2 bg-[#EEEFFB]  p-2  group-hover:inline-block rounded-[50%]  '>
+
+                            <AiOutlineShoppingCart className=' text-[#2F1AC4] ' />
+                        </span>
                     </div>
 
                 </Link>

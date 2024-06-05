@@ -10,17 +10,21 @@ import { RxCross2 } from "react-icons/rx"
 
 import { CiSearch } from "react-icons/ci";
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false)
+
+    const params = useParams();
+    console.log(params)
     return (
         <>
 
             <header className="">
                 <div className="bg-primary text-white ">
-                    <div className="container md:flex md:justify-between">
+                    <div className=" py-3 container md:flex md:justify-between">
                         <div className="">
                             <CgMail className="inline mr-2" />
                             sumansapkota@gmail.com
@@ -39,7 +43,7 @@ const Header = () => {
             </header>
             <div className="container  py-3 md:py-4 flex lg:gap-10 justify-between items-center ">
 
-                <Link to={"/"}>Hekto</Link>
+                <Link to={"/"}> <p className='text-4xl font-bold'>Hekto</p></Link>
 
                 <CiMenuBurger onClick={() => {
                     setShowMenu(true)
@@ -56,7 +60,7 @@ const Header = () => {
                         <li><Link to="/">Home</Link></li>
                         <li>Pages</li>
                         <li><Link to="/products">Products </Link></li>
-                        <li>Blog</li>
+                        <li> <Link to="/carts" >Carts<AiOutlineShoppingCart className='inline' />  </Link></li>
                         <li>Shop</li>
                         <li>Contact</li>
 

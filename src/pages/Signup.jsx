@@ -19,11 +19,12 @@ export default function Signup() {
   }
 
   return (
+
     <div className="mt-[70px] md:mt-[87px] lg:mt-[109px] xl:mt-[136px] 2xl:mt-[170px]">
       <form onSubmit={handleSubmit} className="max-w-sm mx-auto">
         <div className="mb-5">
           <label htmlFor="name" className="form-label required-field">
-            Your Nmae
+            Your Name
           </label>
           <input id="name" className="form-control" required />
         </div>
@@ -69,5 +70,5 @@ export default function Signup() {
         </button>
       </form>
     </div>
-  );
+  )
 }
