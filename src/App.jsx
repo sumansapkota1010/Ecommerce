@@ -16,14 +16,41 @@ import ProductDetail from "./pages/products/ProductDetail";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Carts from "./pages/products/Carts";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 
 function App() {
+  const [user, setUser] = useState("");
+
+
+  useEffect(() => {
+
+    let token = localStorage.getItem("access_token")
+    if (token) {
+      axios.get("https://ecommerce-sagartmg2.vercel.app/api/users/get-user", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then((res) => {
+        setUser(res.data)
+      })
+    }
+
+  }, [])
+
+
+
+  useEffect(() => {
+    document.title = "E-commerce";
+  }, []);
+
+
   const router = createBrowserRouter([
     {
       path: "",
-      element: <RouteLayout />,
+      element: <RouteLayout user={user} setUser={setUser} />,
       children: [
         {
           path: "",
@@ -35,7 +62,7 @@ function App() {
         },
         {
           path: "login",
-          element: <Login />
+          element: <Login setUser={setUser} />
         },
         {
           path: "signup",

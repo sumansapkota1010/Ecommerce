@@ -19,7 +19,7 @@ const Home = () => {
 
     useEffect(() => {
         axios.get("https://ecommerce-sagartmg2.vercel.app/api/products/trending").then(res => {
-            console.log(res.data.data)
+
             setTrendingProducts(res.data.data)
 
         })

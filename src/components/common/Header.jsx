@@ -10,14 +10,26 @@ import { RxCross2 } from "react-icons/rx"
 
 import { CiSearch } from "react-icons/ci";
 import { useState } from "react";
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 
-const Header = () => {
+const Header = ({ user, setUser }) => {
     const [showMenu, setShowMenu] = useState(false)
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const params = useParams();
+
+    const handleLoginClick = () => {
+        navigate("/login");
+    };
+
+    const handleLogout = () => {
+        setUser(null)
+    }
+
+
     console.log(params)
     return (
         <>
@@ -32,8 +44,20 @@ const Header = () => {
                         </div>
                         <div className="">
 
-                            <IoLogIn className="inline ml-4" />
-                            Login
+                            {
+                                user ?
+                                    <button onClick={handleLogout} className="inline ml-4 text-white bg-transparent border-none cursor-pointer">
+                                        <IoLogIn className="inline mr-1" /> Logout
+                                    </button>
+
+                                    :
+                                    <button onClick={handleLoginClick} className="inline ml-4 text-white bg-transparent border-none cursor-pointer">
+                                        <IoLogIn className="inline mr-1" /> Login
+                                    </button>
+
+                            }
+                            &nbsp;
+                            {user && user.name}
                             <RiHeart3Fill className="inline ml-4" /> Wishlist
                             <FaShoppingCart className="inline ml-4" />
                         </div>
@@ -57,10 +81,10 @@ const Header = () => {
                         setShowMenu(false)
                     }} className="lg:hidden" /></button>
                     <ul className="lg:flex gap-4">
-                        <li><Link to="/">Home</Link></li>
+                        <li><Link to={"/"} className={location.pathname === "/" ? "text-secondary" : ""} >Home</Link></li>
                         <li>Pages</li>
-                        <li><Link to="/products">Products </Link></li>
-                        <li> <Link to="/carts" >Carts<AiOutlineShoppingCart className='inline' />  </Link></li>
+                        <li><Link to={"/products"} className={location.pathname === "/products" ? "text-secondary" : ""}>Products </Link></li>
+                        <li> <Link to={"/carts"} className={location.pathname === "/carts" ? "text-secondary" : ""} >Carts<AiOutlineShoppingCart className='inline' />  </Link></li>
                         <li>Shop</li>
                         <li>Contact</li>
 

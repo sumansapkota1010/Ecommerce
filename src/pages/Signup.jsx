@@ -1,20 +1,58 @@
+
 import axios from "axios";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+
 
 export default function Signup() {
+
+  const navigate = useNavigate();
+
+
   function handleSubmit(e) {
+
     e.preventDefault();
+
+    let data = {
+      "name": e.target.name.value,
+      "email": e.target.email.value,
+      "password": e.target.password.value,
+      "role": e.target.role.value,
+    }
+
     axios
-      .post("https://ecommerce-sagartmg2.vercel.app/api/users/signup", {})
-      .then((res) => { })
+      .post("https://ecommerce-sagartmg2.vercel.app/api/users/signup",
+        data
+      )
+      .then((res) => {
+        console.log("re direct...")
+        navigate("/login")
+        toast.success("SignUp Successfully", {
+          theme: "colored"
+        })
+
+
+
+      })
       .catch((err) => {
-        if (err.response.status === 500) {
+
+        let msg = ""
+        if (err.response?.status === 500) {
+          msg = "Server error"
           console.log("show server  error");
-        } else if (err.response.status === 404) {
+
+        } else if (err.response?.status === 400) {
+          msg = "Bad request"
           console.log("show error");
-        } else if (err.response.status === 404) {
-          console.log("show error");
+        } else {
+          msg = "Something went wrong"
         }
+        toast.error(msg, {
+          theme: "colored"
+        })
+
       });
   }
 
@@ -36,7 +74,7 @@ export default function Signup() {
             type="email"
             id="email"
             className="form-control"
-            placeholder="name@flowbite.com"
+            placeholder=""
             required
           />
         </div>
@@ -69,6 +107,7 @@ export default function Signup() {
           Submit
         </button>
       </form>
+
     </div>
   )
 }

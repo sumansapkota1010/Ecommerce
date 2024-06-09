@@ -30,11 +30,11 @@ const ProductDetail = () => {
             {product ? (
                 <div className='primary-light mt-40  container text-center  object-contain'>
                     <div className=''>
-                        <img className='mx-auto h-[300] w-[300] ' src={product.image} alt={product.name} />
+                        <img className='mx-auto h-[100] w-[100] ' src={product.image} alt={product.name} />
                         <div className='mt-10'>
                             <h1>Product Name: {product.name}</h1>
                             <p>Product Description{product.description}</p>
-                            <p>Price: ${product.price}</p>
+                            <p>Price: Rs{product.price}</p>
                             <p>In Stock: {product.in_stock ? 'Yes' : 'No'}</p>
                             <p>Average Rating: {product.avg_rating}</p>
                         </div>
