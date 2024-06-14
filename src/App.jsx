@@ -18,11 +18,19 @@ import Signup from "./pages/Signup";
 import Carts from "./pages/products/Carts";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setReduxUser } from "./redux/slice/userSlice";
+import CreateProduct from "./pages/products/CreateProduct";
+import ProtectedRoute from "./components/common/ProtectedRoute";
+import { setReduxCart } from "./redux/slice/cartSlice";
+
 
 
 
 function App() {
-  const [user, setUser] = useState("");
+
+  const dispatch = useDispatch();
+
 
 
   useEffect(() => {
@@ -34,8 +42,15 @@ function App() {
           Authorization: `Bearer ${token}`
         }
       }).then((res) => {
-        setUser(res.data)
+        dispatch(setReduxUser(res.data))
       })
+    }
+
+    let cartData = JSON.parse(localStorage.getItem("cartItems"));
+
+    if (cartData) {
+      dispatch(setReduxCart(cartData));
+    } else {
     }
 
   }, [])
@@ -50,7 +65,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "",
-      element: <RouteLayout user={user} setUser={setUser} />,
+      element: <RouteLayout />,
       children: [
         {
           path: "",
@@ -58,11 +73,21 @@ function App() {
         },
         {
           path: "carts",
-          element: <Carts />
+          element: <ProtectedRoute role="buyer" />,
+          children: [
+            {
+              path: "",
+              element: <Carts />
+            }
+          ]
+
+
+
+
         },
         {
           path: "login",
-          element: <Login setUser={setUser} />
+          element: <Login />
         },
         {
           path: "signup",
@@ -79,9 +104,20 @@ function App() {
               path: ":id",
               element: <ProductDetail />
             },
+            {
+              path: "create",
+              element: <ProtectedRoute role="seller" />,
+              children: [
+                {
+                  path: "",
+                  element: <CreateProduct />
+                }
+              ]
+            },
           ]
 
         },
+
 
       ]
     },

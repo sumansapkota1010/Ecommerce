@@ -2,11 +2,16 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { setReduxUser } from "../redux/slice/userSlice";
+import { useDispatch } from "react-redux";
 
-export default function Login({ setUser }) {
+
+export default function Login() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -24,7 +29,7 @@ export default function Login({ setUser }) {
                 console.log("re direct...");
                 navigate("/");
                 console.log(res.data.user)
-                setUser(res.data.user)
+                dispatch(setReduxUser(res.data.user))
 
                 localStorage.setItem("access_token", res.data.access_token)
 

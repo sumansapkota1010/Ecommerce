@@ -68,7 +68,7 @@ const Home = () => {
                 <p className='text-5xl text-center font-bold text-primary-dark'>Latest Products</p>
                 <div className='primary-light mt-10  container grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                     {
-                        LatestProducts.slice(17, 23).map((el) => {
+                        LatestProducts.slice(0, 5).map((el) => {
                             return <LatestProduct products={el} />
                         }
 
