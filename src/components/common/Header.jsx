@@ -48,21 +48,37 @@ const Header = () => {
                             sumansapkota@gmail.com
                             <FaPhoneVolume className="inline ml-4" /> 9840300084
                         </div>
-                        <div>
-                            {reduxUser && reduxUser.name}
+                        <div className="flex items-center">
+                            {reduxUser && (
+                                <span className="mr-4">{reduxUser.name}</span>
+                            )}
 
                             {reduxUser ? (
-                                <button onClick={handleLogout} className="inline ml-4 text-white bg-transparent border-none cursor-pointer">
+                                <button
+                                    onClick={handleLogout}
+                                    className="inline ml-4 text-white bg-transparent border-none cursor-pointer"
+                                >
                                     <IoLogIn className="inline mr-1" /> Logout
                                 </button>
                             ) : (
-                                <button onClick={handleLoginClick} className="inline ml-4 text-white bg-transparent border-none cursor-pointer">
+                                <button
+                                    onClick={handleLoginClick}
+                                    className="inline ml-4 text-white bg-transparent border-none cursor-pointer"
+                                >
                                     <IoLogIn className="inline mr-1" /> Login
                                 </button>
                             )}
 
-                            <RiHeart3Fill className="inline ml-4" /> Wishlist
-                            <FaShoppingCart className="inline ml-4" />
+                            <RiHeart3Fill className="inline ml-4" />
+                            <span className="inline ml-2">Wishlist</span>
+
+                            <Link
+                                to="/carts"
+                                className={`${location.pathname === "/carts" ? "text-white" : ""} flex items-center ml-4`}
+                            >
+                                <AiOutlineShoppingCart className="inline" />
+                                <p className="inline ml-2">{totalCartItems}</p>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -82,6 +98,10 @@ const Header = () => {
                         {reduxUser && reduxUser.role === "seller" && (
                             <li><Link to="/products/create" className={location.pathname === "/products/create" ? "text-secondary" : ""}>Create Products</Link></li>
                         )}
+
+
+
+
                         <li><Link to="/products" className={location.pathname === "/products" ? "text-secondary" : ""}>Products</Link></li>
                         {reduxUser && reduxUser.role === "buyer" && (
                             <li><Link to="/carts" className={location.pathname === "/carts" ? "text-secondary" : ""}>Carts <AiOutlineShoppingCart className="inline" />{totalCartItems}</Link></li>
