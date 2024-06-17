@@ -1,63 +1,48 @@
-
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-
-
 export default function Signup() {
-
   const navigate = useNavigate();
 
-
   function handleSubmit(e) {
-
     e.preventDefault();
 
     let data = {
-      "name": e.target.name.value,
-      "email": e.target.email.value,
-      "password": e.target.password.value,
-      "role": e.target.role.value,
-    }
+      name: e.target.name.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+      role: e.target.role.value,
+    };
 
     axios
-      .post("https://ecommerce-sagartmg2.vercel.app/api/users/signup",
-        data
-      )
+      .post("https://ecommerce-sagartmg2.vercel.app/api/users/signup", data)
       .then((res) => {
-        console.log("re direct...")
-        navigate("/login")
+        console.log("re direct...");
+        navigate("/login");
         toast.success("SignUp Successfully", {
-          theme: "colored"
-        })
-
-
-
+          theme: "colored",
+        });
       })
       .catch((err) => {
-
-        let msg = ""
+        let msg = "";
         if (err.response?.status === 500) {
-          msg = "Server error"
+          msg = "Server error";
           console.log("show server  error");
-
         } else if (err.response?.status === 400) {
-          msg = "Bad request"
+          msg = "Bad request";
           console.log("show error");
         } else {
-          msg = "Something went wrong"
+          msg = "Something went wrong";
         }
         toast.error(msg, {
-          theme: "colored"
-        })
-
+          theme: "colored",
+        });
       });
   }
 
   return (
-
     <div className="mt-[70px] md:mt-[87px] lg:mt-[109px] xl:mt-[136px] 2xl:mt-[170px]">
       <form onSubmit={handleSubmit} className="max-w-sm mx-auto">
         <div className="mb-5">
@@ -107,7 +92,6 @@ export default function Signup() {
           Submit
         </button>
       </form>
-
     </div>
-  )
+  );
 }

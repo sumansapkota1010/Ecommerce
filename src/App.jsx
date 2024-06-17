@@ -23,6 +23,7 @@ import { setReduxUser } from "./redux/slice/userSlice";
 import CreateProduct from "./pages/products/CreateProduct";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import { setReduxCart } from "./redux/slice/cartSlice";
+import SellerProducts from "./pages/products/SellerProduct";
 
 
 
@@ -114,6 +115,16 @@ function App() {
                 }
               ]
             },
+            {
+              path: "seller",
+              element: <ProtectedRoute role="seller" />,
+              children: [
+                {
+                  path: "",
+                  element: <SellerProducts />
+                }
+              ]
+            }
 
           ]
 

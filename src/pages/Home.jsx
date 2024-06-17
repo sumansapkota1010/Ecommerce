@@ -54,6 +54,7 @@ const Home = () => {
         <>
 
             <Banner />
+            <p className='text-5xl text-center font-bold text-primary-dark mt-10'>Trending Products</p>
             <div className='primary-light mt-10  container grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                 {
                     TrendingProducts.map((el) => {

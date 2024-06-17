@@ -28,24 +28,38 @@ const ProductDetail = () => {
 
 
             {product ? (
-                <div className='primary-light mt-40  container text-center  object-contain'>
-                    <div className=''>
-                        <img className='mx-auto h-[50] w-[50] ' src={product.image} alt={product.name} />
-                        <div className='mt-10'>
-                            <h1>Product Name: {product.name}</h1>
-                            <p>Product Description{product.description}</p>
-                            <p>Price: Rs{product.price}</p>
-                            <p>In Stock: {product.in_stock ? 'Yes' : 'No'}</p>
-                            <p>Average Rating: {product.avg_rating}</p>
-                        </div>
+                <div className='flex mt-40 container'>
+                    <img className='flex-none w-1/3 h-auto' src={product.image} alt={product.name} />
+                    <div className='flex-grow ml-10'>
+                        <table className='min-w-full border-collapse border border-gray-300'>
+                            <tbody>
+                                <tr>
+                                    <td className="border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900">Product Name:</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-sm text-gray-700">{product.name}</td>
+                                </tr>
+                                <tr>
+                                    <td className="border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900">Description:</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-sm text-gray-700">{product.description}</td>
+                                </tr>
+                                <tr>
+                                    <td className="border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900">Price:</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-sm text-gray-700">Rs{product.price}</td>
+                                </tr>
+                                <tr>
+                                    <td className="border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900">In Stock:</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-sm text-gray-700">{product.in_stock ? 'Yes' : 'No'}</td>
+                                </tr>
+                                <tr>
+                                    <td className="border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900">Average Rating:</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-sm text-gray-700">{product.avg_rating}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-
                 </div>
             ) : (
                 <p>Product not found</p>
             )}
-
-
 
         </>
     );
